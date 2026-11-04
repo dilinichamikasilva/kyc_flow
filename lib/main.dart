@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'core/theme/app_theme.dart';
+import 'features/kyc_checklist/presentation/widgets/identity_header.dart';
 
 void main() {
   runApp(const KycApp());
@@ -25,9 +26,7 @@ class _PlaceholderHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('Welcome to the KYC Flow!'),
-      ),
+      body: IdentityHeader(),
     );
   }
 }
