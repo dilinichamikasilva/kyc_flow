@@ -8,6 +8,7 @@ class KycSection extends StatelessWidget {
   final String title;
   final String description;
   final VoidCallback? onTap;
+  final String? statusLabel;
 
   const KycSection({
     super.key,
@@ -15,6 +16,7 @@ class KycSection extends StatelessWidget {
     required this.title,
     required this.description,
     this.onTap,
+    this.statusLabel,
   });
 
   @override
@@ -36,39 +38,49 @@ class KycSection extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(AppSpacing.md),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundColor: AppColors.white,
-                  child: Icon(
-                    icon,
-                    color: AppColors.primaryPurpleDark,
+                if (statusLabel != null)
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(statusLabel!, style: AppTextStyles.tileDescription),
                   ),
-                ),
-                const SizedBox(width: AppSpacing.md),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        title,
-                        style: AppTextStyles.tileTitle,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 22,
+                      backgroundColor: AppColors.white,
+                      child: Icon(
+                        icon,
+                        color: AppColors.primaryPurpleDark,
                       ),
-                      const SizedBox(height: AppSpacing.xs),
-                      Text(
-                        description,
-                        style: AppTextStyles.tileDescription,
+                    ),
+                    const SizedBox(width: AppSpacing.md),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            title,
+                            style: AppTextStyles.tileTitle,
+                          ),
+                          const SizedBox(height: AppSpacing.xs),
+                          Text(
+                            description,
+                            style: AppTextStyles.tileDescription,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: AppSpacing.sm),
-                const Icon(
-                  Icons.chevron_right,
-                  color: AppColors.textMuted,
+                    ),
+                    const SizedBox(width: AppSpacing.sm),
+                    const Icon(
+                      Icons.chevron_right,
+                      color: AppColors.textMuted,
+                    ),
+                  ],
                 ),
               ],
             ),

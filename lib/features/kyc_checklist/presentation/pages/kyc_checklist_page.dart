@@ -4,8 +4,15 @@ import 'package:kyc_platform/core/theme/app_spacing.dart';
 import 'package:kyc_platform/features/kyc_checklist/presentation/widgets/kyc_section.dart';
 import 'package:kyc_platform/features/about_you/presentation/pages/about_you_page.dart';
 
-class KycChecklistPage extends StatelessWidget {
+class KycChecklistPage extends StatefulWidget {
   const KycChecklistPage({super.key});
+
+  @override
+  State<KycChecklistPage> createState() => _KycChecklistPageState();
+}
+
+class _KycChecklistPageState extends State<KycChecklistPage> {
+  bool _aboutYouCompleted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +31,16 @@ class KycChecklistPage extends StatelessWidget {
                   icon: Icons.person_outline,
                   title: 'About you',
                   description: 'Your citizenship and personal details.',
-                  onTap: () {
-                    Navigator.of(context).push(
+                  statusLabel: _aboutYouCompleted ? 'completed' : null,
+                  onTap: () async {
+                    final result = await Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => const AboutYouPage(),
                       ),
                     );
+                    if (result == true) {
+                      setState(() => _aboutYouCompleted = true);
+                    }
                   },
                 ),
                 const SizedBox(height: AppSpacing.sm),

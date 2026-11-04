@@ -106,7 +106,7 @@ class _AboutYouPageState extends State<AboutYouPage> {
             AppSpacing.md,
           ),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pop(true),
             child: const Text('Next'),
           ),
         ),
