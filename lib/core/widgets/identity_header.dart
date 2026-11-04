@@ -42,13 +42,13 @@ class IdentityHeader extends StatelessWidget {
                 alignment: Alignment.centerLeft,
               ),
               const SizedBox(height: AppSpacing.md),
-              const Text(
-                "Let's clarify your\nidentity",
+              Text(
+                title,
                 style: AppTextStyles.heading1,
               ),
               const SizedBox(height: AppSpacing.sm),
-              const Text(
-                "We'll keep your information secure and confidential.",
+              Text(
+                subtitle,
                 style: AppTextStyles.subtitle,
               ),
             ],

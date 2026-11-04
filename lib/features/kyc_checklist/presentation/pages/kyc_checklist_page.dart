@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kyc_platform/core/widgets/identity_header.dart';
 import 'package:kyc_platform/core/theme/app_spacing.dart';
 import 'package:kyc_platform/features/kyc_checklist/presentation/widgets/kyc_section.dart';
+import 'package:kyc_platform/features/about_you/presentation/pages/about_you_page.dart';
 
 class KycChecklistPage extends StatelessWidget {
   const KycChecklistPage({super.key});
@@ -23,7 +24,13 @@ class KycChecklistPage extends StatelessWidget {
                   icon: Icons.person_outline,
                   title: 'About you',
                   description: 'Your citizenship and personal details.',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AboutYouPage(),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 KycSection(
