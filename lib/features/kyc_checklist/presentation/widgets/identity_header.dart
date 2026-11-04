@@ -11,12 +11,6 @@ class IdentityHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(
-        AppSpacing.lg,
-        AppSpacing.lg,
-        AppSpacing.lg,
-        AppSpacing.xl,
-      ),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [AppColors.primaryPurpleDark, AppColors.primaryPurpleLight],
@@ -24,29 +18,37 @@ class IdentityHeader extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      child: SafeArea(
-        bottom: false, // only avoid the top status bar , not the bottom
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, //left align text
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              onPressed: onBack ?? () => Navigator.of(context).maybePop(),
-              icon: const Icon(Icons.arrow_back, color: AppColors.white),
-              padding: EdgeInsets.zero,
-              alignment: Alignment.centerLeft,
-            ),
-            const SizedBox(height: AppSpacing.md),
-            const Text(
-              "Let's clarify your\nidentity",
-              style: AppTextStyles.heading1,
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            const Text(
-              "We'll keep your iformation secure and confidential.",
-              style: AppTextStyles.subtitle,
-            ),
-          ],
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(
+          AppSpacing.lg,
+          AppSpacing.lg,
+          AppSpacing.lg,
+          AppSpacing.xl,
+        ),
+        child: SafeArea(
+          bottom: false,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                onPressed: onBack ?? () => Navigator.of(context).maybePop(),
+                icon: const Icon(Icons.arrow_back, color: AppColors.white),
+                padding: EdgeInsets.zero,
+                alignment: Alignment.centerLeft,
+              ),
+              const SizedBox(height: AppSpacing.md),
+              const Text(
+                "Let's clarify your\nidentity",
+                style: AppTextStyles.heading1,
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              const Text(
+                "We'll keep your information secure and confidential.",
+                style: AppTextStyles.subtitle,
+              ),
+            ],
+          ),
         ),
       ),
     );
