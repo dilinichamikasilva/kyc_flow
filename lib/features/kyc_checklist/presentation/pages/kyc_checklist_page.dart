@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kyc_platform/features/kyc_checklist/presentation/widgets/identity_header.dart';
+import 'package:kyc_platform/core/widgets/identity_header.dart';
 import 'package:kyc_platform/core/theme/app_spacing.dart';
 import 'package:kyc_platform/features/kyc_checklist/presentation/widgets/kyc_section.dart';
 
@@ -11,7 +11,10 @@ class KycChecklistPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const IdentityHeader(),
+          const IdentityHeader(
+            title: "Let's clarify your\nidentity",
+            subtitle: "We'll keep your information secure and confidential.",
+          ),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.all(AppSpacing.md),

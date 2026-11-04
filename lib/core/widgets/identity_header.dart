@@ -4,8 +4,12 @@ import 'package:kyc_platform/core/theme/app_colors.dart';
 import 'package:kyc_platform/core/theme/app_text_styles.dart';
 
 class IdentityHeader extends StatelessWidget {
+  final String title;
+  final String subtitle;
   final VoidCallback? onBack;
-  const IdentityHeader({super.key, this.onBack});
+
+  const IdentityHeader(
+      {super.key, required this.title, required this.subtitle, this.onBack});
 
   @override
   Widget build(BuildContext context) {
