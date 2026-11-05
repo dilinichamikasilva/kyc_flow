@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:kyc_platform/core/services/theme/app_colors.dart';
-import 'package:kyc_platform/core/services/theme/app_text_styles.dart';
 import 'package:kyc_platform/core/services/theme/app_spacing.dart';
+import 'package:kyc_platform/core/services/theme/domain/entities/app_color.dart';
+import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.dart';
+import 'package:kyc_platform/core/services/theme/presentation/extension/theme_context_extension.dart';
 
 class KycSection extends StatelessWidget {
-  final IconData icon;
+  final Widget icon;
   final String title;
   final String description;
   final VoidCallback? onTap;
   final String? statusLabel;
+  final bool isActive;
 
   const KycSection({
     super.key,
+    this.isActive = true,
     required this.icon,
     required this.title,
     required this.description,
@@ -28,35 +31,39 @@ class KycSection extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(16),
         child: Container(
+          constraints: const BoxConstraints(minHeight: AppSpacing.tileHeight),
           decoration: BoxDecoration(
-            color: AppColors.cardBackground,
+            color: isActive
+                ? context.getColor(AppColor.backgroundLight)
+                : context.getColor(AppColor.cardBackgroundInactive),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppColors.textMuted.withValues(alpha: 0.2),
+              color: context.getColor(AppColor.cardBorder),
               width: 1,
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(AppSpacing.md),
+            // top 16 / right 12 / bottom 16 / left 12
+            padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 if (statusLabel != null)
                   Align(
                     alignment: Alignment.centerRight,
-                    child: Text(statusLabel!,
-                        style: AppTextStyles.tileDescription),
+                    child: Text(
+                      statusLabel!,
+                      style: context.textStyle(AppTypographyRole.tileSubtitle),
+                    ),
                   ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CircleAvatar(
-                      radius: 22,
-                      backgroundColor: AppColors.white,
-                      child: Icon(
-                        icon,
-                        color: AppColors.primaryPurpleDark,
-                      ),
+                      radius: 24,
+                      backgroundColor:
+                          context.getColor(AppColor.avatarBackground),
+                      child: icon,
                     ),
                     const SizedBox(width: AppSpacing.md),
                     Expanded(
@@ -66,20 +73,22 @@ class KycSection extends StatelessWidget {
                         children: [
                           Text(
                             title,
-                            style: AppTextStyles.tileTitle,
+                            style:
+                                context.textStyle(AppTypographyRole.tileTitle),
                           ),
                           const SizedBox(height: AppSpacing.xs),
                           Text(
                             description,
-                            style: AppTextStyles.tileDescription,
+                            style: context
+                                .textStyle(AppTypographyRole.tileSubtitle),
                           ),
                         ],
                       ),
                     ),
                     const SizedBox(width: AppSpacing.sm),
-                    const Icon(
+                    Icon(
                       Icons.chevron_right,
-                      color: AppColors.textMuted,
+                      color: context.getColor(AppColor.textMuted),
                     ),
                   ],
                 ),

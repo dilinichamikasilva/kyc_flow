@@ -4,4 +4,7 @@ enum AppTypographyRole {
   tileTitle,
   tileSubtitle,
   buttonLabel,
+  inputHint,
+  optionalLabel,
+  errorLabel,
 }
