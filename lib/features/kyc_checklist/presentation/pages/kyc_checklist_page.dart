@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kyc_platform/core/widgets/identity_header.dart';
-import 'package:kyc_platform/core/theme/app_spacing.dart';
+import 'package:kyc_platform/core/services/theme/app_spacing.dart';
 import 'package:kyc_platform/features/kyc_checklist/presentation/widgets/kyc_section.dart';
 import 'package:kyc_platform/features/about_you/presentation/pages/about_you_page.dart';
 

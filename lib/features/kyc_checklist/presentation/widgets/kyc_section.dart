@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kyc_platform/core/theme/app_colors.dart';
-import 'package:kyc_platform/core/theme/app_text_styles.dart';
-import 'package:kyc_platform/core/theme/app_spacing.dart';
+import 'package:kyc_platform/core/services/theme/app_colors.dart';
+import 'package:kyc_platform/core/services/theme/app_text_styles.dart';
+import 'package:kyc_platform/core/services/theme/app_spacing.dart';
 
 class KycSection extends StatelessWidget {
   final IconData icon;
@@ -32,7 +32,7 @@ class KycSection extends StatelessWidget {
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppColors.textMuted.withOpacity(0.2),
+              color: AppColors.textMuted.withValues(alpha: 0.2),
               width: 1,
             ),
           ),
@@ -44,7 +44,8 @@ class KycSection extends StatelessWidget {
                 if (statusLabel != null)
                   Align(
                     alignment: Alignment.centerRight,
-                    child: Text(statusLabel!, style: AppTextStyles.tileDescription),
+                    child: Text(statusLabel!,
+                        style: AppTextStyles.tileDescription),
                   ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'core/theme/app_theme.dart';
+import 'core/services/theme/app_theme.dart';
 import 'features/kyc_checklist/presentation/pages/kyc_checklist_page.dart';
 
 void main() {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kyc_platform/core/theme/app_colors.dart';
-import 'package:kyc_platform/core/theme/app_spacing.dart';
-import 'package:kyc_platform/core/theme/app_text_styles.dart';
+import 'package:kyc_platform/core/services/theme/app_colors.dart';
+import 'package:kyc_platform/core/services/theme/app_spacing.dart';
+import 'package:kyc_platform/core/services/theme/app_text_styles.dart';
 import 'package:kyc_platform/core/widgets/identity_header.dart';
 import 'package:kyc_platform/features/about_you/presentation/widgets/app_text_field.dart';
 

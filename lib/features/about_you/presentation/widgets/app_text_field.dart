@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kyc_platform/core/theme/app_colors.dart';
-import 'package:kyc_platform/core/theme/app_spacing.dart';
-import 'package:kyc_platform/core/theme/app_text_styles.dart';
+import 'package:kyc_platform/core/services/theme/app_colors.dart';
+import 'package:kyc_platform/core/services/theme/app_spacing.dart';
+import 'package:kyc_platform/core/services/theme/app_text_styles.dart';
 
 class AppTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -40,11 +40,11 @@ class AppTextField extends StatelessWidget {
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: AppColors.textMuted.withOpacity(0.3)),
+          borderSide: BorderSide(color: AppColors.textMuted.withValues(alpha: 0.3)),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: AppColors.textMuted.withOpacity(0.3)),
+          borderSide: BorderSide(color: AppColors.textMuted.withValues(alpha: 0.3)),
         ),
       ),
     );

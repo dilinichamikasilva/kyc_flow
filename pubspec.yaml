@@ -37,7 +37,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   equatable: ^3.0.0
   get_it: ^9.3.0
-  dartz: ^0.10.1
+  fpdart: ^1.1.1
   dio: ^5.11.1
 
 dev_dependencies:
