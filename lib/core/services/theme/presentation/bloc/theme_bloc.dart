@@ -5,7 +5,7 @@ import 'package:kyc_platform/core/usecase/usecase.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_color.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.dart';
 import 'package:kyc_platform/core/services/theme/domain/usecases/get_theme_colors.dart';
-import 'package:kyc_platform/core/services/theme/domain/usecases/get_theme_typorgraphy.dart';
+import 'package:kyc_platform/core/services/theme/domain/usecases/get_theme_typography.dart';
 
 part 'theme_event.dart';
 part 'theme_state.dart';

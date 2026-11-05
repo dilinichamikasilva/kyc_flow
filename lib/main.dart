@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'core/services/theme/app_theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'core/services/theme/data/datasources/theme_local_datasource.dart';
+import 'core/services/theme/data/repositories/theme_repository_impl.dart';
+import 'core/services/theme/domain/usecases/get_theme_colors.dart';
+import 'core/services/theme/domain/usecases/get_theme_typography.dart';
+import 'core/services/theme/presentation/bloc/theme_bloc.dart';
 import 'features/kyc_checklist/presentation/pages/kyc_checklist_page.dart';
 
 void main() {
@@ -11,11 +16,18 @@ class KycApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'KYC Flow',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      home: const KycChecklistPage(),
+    final themeRepository = ThemeRepositoryImpl(ThemeLocalDataSource());
+
+    return BlocProvider(
+      create: (_) => ThemeBloc(
+        getThemeColors: GetThemeColors(themeRepository),
+        getThemeTypography: GetThemeTypography(themeRepository),
+      )..add(const LoadTheme()),
+      child: const MaterialApp(
+        title: 'KYC Flow',
+        debugShowCheckedModeBanner: false,
+        home: KycChecklistPage(),
+      ),
     );
   }
 }
