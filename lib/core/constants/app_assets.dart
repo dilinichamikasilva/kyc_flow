@@ -17,4 +17,9 @@ class AppAssets {
       '$_iconsPath/other_document_inactive.png';
   static const String billingProofInactive =
       '$_iconsPath/billing_proof_inactive.png';
+
+  static const String selfieIllustration = '$_iconsPath/selfie.png';
+  static const String checklistTick = '$_iconsPath/checklist_tick.png';
+  static const String nationalIdIllustration =
+      '$_iconsPath/national_id.png';
 }

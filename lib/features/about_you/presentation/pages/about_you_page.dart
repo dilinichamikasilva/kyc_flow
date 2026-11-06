@@ -161,6 +161,9 @@ class _AboutYouViewState extends State<_AboutYouView> {
                       foregroundColor: Colors.white,
                       disabledBackgroundColor:
                           context.getColor(AppColor.cardBorder),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                       minimumSize: const Size.fromHeight(55),
                       padding:
                           const EdgeInsets.symmetric(horizontal: AppSpacing.xl),

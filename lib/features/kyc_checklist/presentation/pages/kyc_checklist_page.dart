@@ -4,6 +4,7 @@ import 'package:kyc_platform/core/widgets/identity_header.dart';
 import 'package:kyc_platform/core/services/theme/app_spacing.dart';
 import 'package:kyc_platform/features/kyc_checklist/presentation/widgets/kyc_section.dart';
 import 'package:kyc_platform/features/about_you/presentation/pages/about_you_page.dart';
+import 'package:kyc_platform/features/your_identity/presentation/pages/selfie_intro_page.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_color.dart';
 import 'package:kyc_platform/core/services/theme/presentation/extension/theme_context_extension.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.dart';
@@ -17,7 +18,6 @@ class KycChecklistPage extends StatefulWidget {
 
 class _KycChecklistPageState extends State<KycChecklistPage> {
   bool _aboutYouCompleted = false;
-  // ignore: prefer_final_fields
   bool _yourIdentityCompleted = false;
   // ignore: prefer_final_fields
   bool _otherDocumentCompleted = false;
@@ -69,8 +69,20 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                   ),
                   title: 'Your Identity',
                   description: 'Checking to make sure you and your ID match.',
+                  statusLabel: _yourIdentityCompleted ? 'completed' : null,
                   isActive: _aboutYouCompleted,
-                  onTap: _aboutYouCompleted ? () {} : null,
+                  onTap: _aboutYouCompleted
+                      ? () async {
+                          final result = await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SelfieIntroPage(),
+                            ),
+                          );
+                          if (result == true) {
+                            setState(() => _yourIdentityCompleted = true);
+                          }
+                        }
+                      : null,
                 ),
                 const SizedBox(height: AppSpacing.listGap),
                 KycSection(
@@ -123,6 +135,9 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: context.getColor(AppColor.buttonPrimary),
                 foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 minimumSize: const Size.fromHeight(55),
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
               ),
