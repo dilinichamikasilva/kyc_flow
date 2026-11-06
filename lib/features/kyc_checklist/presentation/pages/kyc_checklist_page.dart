@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kyc_platform/core/constants/app_assets.dart';
 import 'package:kyc_platform/core/widgets/identity_header.dart';
 import 'package:kyc_platform/core/services/theme/app_spacing.dart';
 import 'package:kyc_platform/features/kyc_checklist/presentation/widgets/kyc_section.dart';
@@ -33,7 +34,7 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
               children: [
                 KycSection(
                   icon: Image.asset(
-                    'assets/icons/about_you.png',
+                    AppAssets.aboutYou,
                     width: AppSpacing.tileIconSize,
                     height: AppSpacing.tileIconSize,
                   ),
@@ -54,7 +55,7 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                 const SizedBox(height: AppSpacing.listGap),
                 KycSection(
                   icon: Image.asset(
-                    'assets/icons/your_identity.png',
+                    AppAssets.yourIdentity,
                     width: AppSpacing.tileIconSize,
                     height: AppSpacing.tileIconSize,
                   ),
@@ -66,7 +67,7 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                 const SizedBox(height: AppSpacing.listGap),
                 KycSection(
                   icon: Image.asset(
-                    'assets/icons/other_document.png',
+                    AppAssets.otherDocument,
                     width: AppSpacing.tileIconSize,
                     height: AppSpacing.tileIconSize,
                   ),
@@ -79,7 +80,7 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                 const SizedBox(height: AppSpacing.listGap),
                 KycSection(
                   icon: Image.asset(
-                    'assets/icons/billing_proof.png',
+                    AppAssets.billingProof,
                     width: AppSpacing.tileIconSize,
                     height: AppSpacing.tileIconSize,
                   ),

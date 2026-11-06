@@ -27,7 +27,9 @@ class Helper {
   }
 
   //nid
-  static final RegExp _maldivesNidPattern = RegExp(r'^[A-Za-z0-9]{6,10}$');
+  static const int minNationalIdLength = 6;
+  static final RegExp _maldivesNidPattern =
+      RegExp('^[A-Za-z0-9]{$minNationalIdLength,10}\$');
 
   static String? nationalId(String? value) {
     final requiredError = required(value, fieldName: 'National ID Number');

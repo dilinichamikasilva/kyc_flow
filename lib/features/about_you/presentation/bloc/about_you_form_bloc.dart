@@ -27,8 +27,7 @@ class AboutYouFormBloc extends Bloc<AboutYouFormEvent, AboutYouFormState> {
     final nationalIdError = Helper.nationalId(current.nationalId);
     final firstNameError =
         Helper.name(current.firstName, fieldName: 'First name');
-    final lastNameError =
-        Helper.name(current.lastName, fieldName: 'Last name');
+    final lastNameError = Helper.name(current.lastName, fieldName: 'Last name');
     final otherNamesError = Helper.optionalName(
       current.otherNames,
       fieldName: 'Other names',
@@ -42,7 +41,9 @@ class AboutYouFormBloc extends Bloc<AboutYouFormEvent, AboutYouFormState> {
         dobError == null;
 
     return current.copyWith(
-      nationalIdError: current.nationalId.isNotEmpty ? nationalIdError : null,
+      nationalIdError: current.nationalId.length >= Helper.minNationalIdLength
+          ? nationalIdError
+          : null,
       firstNameError: current.firstName.isNotEmpty ? firstNameError : null,
       lastNameError: current.lastName.isNotEmpty ? lastNameError : null,
       otherNamesError: otherNamesError,
