@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kyc_platform/core/utils/validators.dart';
+import 'package:kyc_platform/core/utils/helper.dart';
 
 part 'about_you_form_event.dart';
 part 'about_you_form_state.dart';
@@ -24,16 +24,16 @@ class AboutYouFormBloc extends Bloc<AboutYouFormEvent, AboutYouFormState> {
   }
 
   AboutYouFormState _revalidate(AboutYouFormState current) {
-    final nationalIdError = Validators.nationalId(current.nationalId);
+    final nationalIdError = Helper.nationalId(current.nationalId);
     final firstNameError =
-        Validators.name(current.firstName, fieldName: 'First name');
+        Helper.name(current.firstName, fieldName: 'First name');
     final lastNameError =
-        Validators.name(current.lastName, fieldName: 'Last name');
-    final otherNamesError = Validators.optionalName(
+        Helper.name(current.lastName, fieldName: 'Last name');
+    final otherNamesError = Helper.optionalName(
       current.otherNames,
       fieldName: 'Other names',
     );
-    final dobError = Validators.dateOfBirth18Plus(current.dateOfBirth);
+    final dobError = Helper.dateOfBirth18Plus(current.dateOfBirth);
 
     final isValid = nationalIdError == null &&
         firstNameError == null &&

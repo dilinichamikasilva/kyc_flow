@@ -1,5 +1,7 @@
-class Validators {
-  Validators._();
+class Helper {
+  Helper._();
+
+  // Validation
 
   static String? required(String? value, {String fieldName = 'This field'}) {
     if (value == null || value.trim().isEmpty) {
@@ -24,6 +26,7 @@ class Validators {
     return name(value, fieldName: fieldName);
   }
 
+  //nid
   static final RegExp _maldivesNidPattern = RegExp(r'^[A-Za-z0-9]{6,10}$');
 
   static String? nationalId(String? value) {
@@ -70,5 +73,12 @@ class Validators {
       return 'You must be at least 18 years old to register';
     }
     return null;
+  }
+
+  // date time formatting
+  static String formatDateDDMMYYYY(DateTime date) {
+    final day = date.day.toString().padLeft(2, '0');
+    final month = date.month.toString().padLeft(2, '0');
+    return '$day/$month/${date.year}';
   }
 }

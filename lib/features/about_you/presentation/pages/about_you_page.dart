@@ -6,6 +6,7 @@ import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.
 import 'package:kyc_platform/core/services/theme/presentation/extension/theme_context_extension.dart';
 import 'package:kyc_platform/core/widgets/app_text_field.dart';
 import 'package:kyc_platform/core/widgets/identity_header.dart';
+import 'package:kyc_platform/core/utils/helper.dart';
 import 'package:kyc_platform/features/about_you/presentation/bloc/about_you_form_bloc.dart';
 
 class AboutYouPage extends StatelessWidget {
@@ -52,9 +53,7 @@ class _AboutYouViewState extends State<_AboutYouView> {
       lastDate: DateTime.now(),
     );
     if (pickedDate != null && mounted) {
-      final day = pickedDate.day.toString().padLeft(2, '0');
-      final month = pickedDate.month.toString().padLeft(2, '0');
-      final formatted = '$day/$month/${pickedDate.year}';
+      final formatted = Helper.formatDateDDMMYYYY(pickedDate);
       _dobController.text = formatted;
       context.read<AboutYouFormBloc>().add(DateOfBirthChanged(formatted));
     }
