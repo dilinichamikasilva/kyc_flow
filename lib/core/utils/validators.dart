@@ -24,11 +24,13 @@ class Validators {
     return name(value, fieldName: fieldName);
   }
 
+  static final RegExp _maldivesNidPattern = RegExp(r'^[A-Za-z0-9]{6,10}$');
+
   static String? nationalId(String? value) {
     final requiredError = required(value, fieldName: 'National ID Number');
     if (requiredError != null) return requiredError;
-    if (value!.trim().length < 5) {
-      return 'National ID Number looks too short';
+    if (!_maldivesNidPattern.hasMatch(value!.trim())) {
+      return 'Enter a valid National ID Number';
     }
     return null;
   }
