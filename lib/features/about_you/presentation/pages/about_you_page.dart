@@ -5,7 +5,7 @@ import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.
 import 'package:kyc_platform/core/services/theme/presentation/extension/theme_context_extension.dart';
 import 'package:kyc_platform/core/utils/validators.dart';
 import 'package:kyc_platform/core/widgets/identity_header.dart';
-import 'package:kyc_platform/features/about_you/presentation/widgets/app_text_field.dart';
+import 'package:kyc_platform/core/widgets/app_text_field.dart';
 
 class AboutYouPage extends StatefulWidget {
   const AboutYouPage({super.key});
