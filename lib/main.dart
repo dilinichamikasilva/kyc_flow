@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/services/theme/data/datasources/theme_local_datasource.dart';
@@ -7,7 +8,9 @@ import 'core/services/theme/domain/usecases/get_theme_typography.dart';
 import 'core/services/theme/presentation/bloc/theme_bloc.dart';
 import 'features/auth/presentation/pages/login_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const KycApp());
 }
 
