@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "239231425112",
+    "project_id": "cbm-kyc",
+    "storage_bucket": "cbm-kyc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239231425112:android:5a9795e3ae370198e8c82d",
+        "android_client_info": {
+          "package_name": "com.cbm.kyc_platform"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239231425112-o2m70sttrpcr160spu98qfdujvvpkoe7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cbm.kyc_platform",
+            "certificate_hash": "fe4e0645c743f86d6d073dec849c8d8fb7e3f707"
+          }
+        },
+        {
+          "client_id": "239231425112-p48v2bga997qihknlrcqtk32arrj03ok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgiF-4bhXOHde5l8E8-_N94kcjF8XvleU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239231425112-p48v2bga997qihknlrcqtk32arrj03ok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
