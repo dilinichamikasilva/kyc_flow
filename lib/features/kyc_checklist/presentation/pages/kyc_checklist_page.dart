@@ -5,6 +5,7 @@ import 'package:kyc_platform/core/services/theme/app_spacing.dart';
 import 'package:kyc_platform/features/kyc_checklist/presentation/widgets/kyc_section.dart';
 import 'package:kyc_platform/features/about_you/presentation/pages/about_you_page.dart';
 import 'package:kyc_platform/features/your_identity/presentation/pages/selfie_intro_page.dart';
+import 'package:kyc_platform/features/your_identity/presentation/pages/work_permit_intro_page.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_color.dart';
 import 'package:kyc_platform/core/services/theme/presentation/extension/theme_context_extension.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.dart';
@@ -19,7 +20,6 @@ class KycChecklistPage extends StatefulWidget {
 class _KycChecklistPageState extends State<KycChecklistPage> {
   bool _aboutYouCompleted = false;
   bool _yourIdentityCompleted = false;
-  // ignore: prefer_final_fields
   bool _otherDocumentCompleted = false;
 
   @override
@@ -97,8 +97,20 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                   title: 'Other document',
                   description:
                       'Processing of transactions and services that require your authorization.',
+                  statusLabel: _otherDocumentCompleted ? 'completed' : null,
                   isActive: _yourIdentityCompleted,
-                  onTap: _yourIdentityCompleted ? () {} : null,
+                  onTap: _yourIdentityCompleted
+                      ? () async {
+                          final result = await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const WorkPermitIntroPage(),
+                            ),
+                          );
+                          if (result == true) {
+                            setState(() => _otherDocumentCompleted = true);
+                          }
+                        }
+                      : null,
                 ),
                 const SizedBox(height: AppSpacing.listGap),
                 KycSection(

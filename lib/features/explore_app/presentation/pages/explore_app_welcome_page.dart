@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kyc_platform/core/constants/app_assets.dart';
+import 'package:kyc_platform/features/auth/presentation/pages/login_page.dart';
 import 'package:kyc_platform/core/services/theme/app_spacing.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_color.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.dart';
@@ -9,7 +10,7 @@ class ExploreAppWelcomePage extends StatelessWidget {
   const ExploreAppWelcomePage({super.key});
 
   static const double _designWidth = 430;
-  static const double _ringSize = 500;
+  static const double _ringSize = 520;
   static const double _ringWidth = 2;
 
   @override
@@ -38,8 +39,8 @@ class ExploreAppWelcomePage extends StatelessWidget {
                 child: Stack(
                   children: [
                     Positioned(
-                      top: -80 * scale,
-                      right: 100 * scale,
+                      top: -150 * scale,
+                      right: 80 * scale,
                       child: Container(
                         width: _ringSize * scale,
                         height: _ringSize * scale,
@@ -53,7 +54,7 @@ class ExploreAppWelcomePage extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      top: 40 * scale,
+                      top: -150 * scale,
                       right: -340 * scale,
                       child: Container(
                         width: _ringSize * scale,
@@ -85,8 +86,8 @@ class ExploreAppWelcomePage extends StatelessWidget {
                             Text(
                               "Yay, you've joined My CBM!",
                               textAlign: TextAlign.center,
-                              style: context.textStyle(
-                                  AppTypographyRole.onboardingTitle),
+                              style: context
+                                  .textStyle(AppTypographyRole.onboardingTitle),
                             ),
                             const SizedBox(height: AppSpacing.md),
                             Text(
@@ -127,7 +128,13 @@ class ExploreAppWelcomePage extends StatelessWidget {
                     ),
                     minimumSize: const Size.fromHeight(55),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    );
+                  },
                   child: Text(
                     "Let's Go",
                     style: context.textStyle(AppTypographyRole.buttonLabel),

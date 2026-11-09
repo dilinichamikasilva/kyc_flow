@@ -26,4 +26,6 @@ class AppAssets {
   static const String googleLogo = '$_iconsPath/google_logo.png';
   static const String exploreAppIllustration =
       '$_iconsPath/explore_app_illustration.png';
+  static const String workPermitIllustration =
+      '$_iconsPath/work_permit.png';
 }
