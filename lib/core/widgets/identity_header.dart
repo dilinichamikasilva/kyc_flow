@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kyc_platform/core/constants/app_assets.dart';
 import 'package:kyc_platform/core/services/theme/app_spacing.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_color.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.dart';
@@ -83,7 +84,7 @@ class IdentityHeader extends StatelessWidget {
                       onPressed:
                           onBack ?? () => Navigator.of(context).maybePop(),
                       icon: Image.asset(
-                        'assets/icons/back_arrow.png',
+                        AppAssets.backArrow,
                         width: AppSpacing.tileIconSize,
                         height: AppSpacing.tileIconSize,
                       ),

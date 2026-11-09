@@ -5,7 +5,7 @@ import 'core/services/theme/data/repositories/theme_repository_impl.dart';
 import 'core/services/theme/domain/usecases/get_theme_colors.dart';
 import 'core/services/theme/domain/usecases/get_theme_typography.dart';
 import 'core/services/theme/presentation/bloc/theme_bloc.dart';
-import 'features/kyc_checklist/presentation/pages/kyc_checklist_page.dart';
+import 'features/auth/presentation/pages/login_page.dart';
 
 void main() {
   runApp(const KycApp());
@@ -26,7 +26,7 @@ class KycApp extends StatelessWidget {
       child: const MaterialApp(
         title: 'KYC Flow',
         debugShowCheckedModeBanner: false,
-        home: KycChecklistPage(),
+        home: LoginPage(),
       ),
     );
   }

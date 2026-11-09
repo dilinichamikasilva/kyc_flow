@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kyc_platform/core/constants/app_assets.dart';
 import 'package:kyc_platform/core/widgets/identity_header.dart';
 import 'package:kyc_platform/core/services/theme/app_spacing.dart';
 import 'package:kyc_platform/features/kyc_checklist/presentation/widgets/kyc_section.dart';
 import 'package:kyc_platform/features/about_you/presentation/pages/about_you_page.dart';
+import 'package:kyc_platform/features/your_identity/presentation/pages/selfie_intro_page.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_color.dart';
 import 'package:kyc_platform/core/services/theme/presentation/extension/theme_context_extension.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.dart';
@@ -16,6 +18,9 @@ class KycChecklistPage extends StatefulWidget {
 
 class _KycChecklistPageState extends State<KycChecklistPage> {
   bool _aboutYouCompleted = false;
+  bool _yourIdentityCompleted = false;
+  // ignore: prefer_final_fields
+  bool _otherDocumentCompleted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +38,10 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
               children: [
                 KycSection(
                   icon: Image.asset(
-                    'assets/icons/about_you.png',
+                    AppAssets.aboutYou,
                     width: AppSpacing.tileIconSize,
                     height: AppSpacing.tileIconSize,
+                    filterQuality: FilterQuality.high,
                   ),
                   title: 'About you',
                   description: 'Your citizenship and personal details.',
@@ -54,40 +60,61 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                 const SizedBox(height: AppSpacing.listGap),
                 KycSection(
                   icon: Image.asset(
-                    'assets/icons/your_identity.png',
+                    _aboutYouCompleted
+                        ? AppAssets.yourIdentity
+                        : AppAssets.yourIdentityInactive,
                     width: AppSpacing.tileIconSize,
                     height: AppSpacing.tileIconSize,
+                    filterQuality: FilterQuality.high,
                   ),
                   title: 'Your Identity',
                   description: 'Checking to make sure you and your ID match.',
+                  statusLabel: _yourIdentityCompleted ? 'completed' : null,
                   isActive: _aboutYouCompleted,
-                  onTap: () {},
+                  onTap: _aboutYouCompleted
+                      ? () async {
+                          final result = await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SelfieIntroPage(),
+                            ),
+                          );
+                          if (result == true) {
+                            setState(() => _yourIdentityCompleted = true);
+                          }
+                        }
+                      : null,
                 ),
                 const SizedBox(height: AppSpacing.listGap),
                 KycSection(
                   icon: Image.asset(
-                    'assets/icons/other_document.png',
+                    _yourIdentityCompleted
+                        ? AppAssets.otherDocument
+                        : AppAssets.otherDocumentInactive,
                     width: AppSpacing.tileIconSize,
                     height: AppSpacing.tileIconSize,
+                    filterQuality: FilterQuality.high,
                   ),
                   title: 'Other document',
                   description:
                       'Processing of transactions and services that require your authorization.',
-                  isActive: _aboutYouCompleted,
-                  onTap: () {},
+                  isActive: _yourIdentityCompleted,
+                  onTap: _yourIdentityCompleted ? () {} : null,
                 ),
                 const SizedBox(height: AppSpacing.listGap),
                 KycSection(
                   icon: Image.asset(
-                    'assets/icons/billing_proof.png',
+                    _otherDocumentCompleted
+                        ? AppAssets.billingProof
+                        : AppAssets.billingProofInactive,
                     width: AppSpacing.tileIconSize,
                     height: AppSpacing.tileIconSize,
+                    filterQuality: FilterQuality.high,
                   ),
                   title: 'Billing proof',
                   description:
                       'Checking to make sure you are an authorized representative.',
-                  isActive: _aboutYouCompleted,
-                  onTap: () {},
+                  isActive: _otherDocumentCompleted,
+                  onTap: _otherDocumentCompleted ? () {} : null,
                 ),
               ],
             ),
@@ -108,9 +135,11 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: context.getColor(AppColor.buttonPrimary),
                 foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 minimumSize: const Size.fromHeight(55),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
               ),
               onPressed: () {},
               child: Text(

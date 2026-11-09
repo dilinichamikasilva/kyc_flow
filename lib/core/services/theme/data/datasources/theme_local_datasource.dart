@@ -44,7 +44,7 @@ class ThemeLocalDataSource {
         fontWeight: FontWeight.w600,
       ),
       AppTypographyRole.tileSubtitle: const TextStyle(
-        fontSize: 13,
+        fontSize: 14,
       ),
       AppTypographyRole.buttonLabel: GoogleFonts.plusJakartaSans(
         fontSize: 18,

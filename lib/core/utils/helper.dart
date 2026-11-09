@@ -1,5 +1,7 @@
-class Validators {
-  Validators._();
+class Helper {
+  Helper._();
+
+  // Validation
 
   static String? required(String? value, {String fieldName = 'This field'}) {
     if (value == null || value.trim().isEmpty) {
@@ -24,11 +26,16 @@ class Validators {
     return name(value, fieldName: fieldName);
   }
 
+  //nid
+  static const int minNationalIdLength = 6;
+  static final RegExp _maldivesNidPattern =
+      RegExp('^[A-Za-z0-9]{$minNationalIdLength,10}\$');
+
   static String? nationalId(String? value) {
     final requiredError = required(value, fieldName: 'National ID Number');
     if (requiredError != null) return requiredError;
-    if (value!.trim().length < 5) {
-      return 'National ID Number looks too short';
+    if (!_maldivesNidPattern.hasMatch(value!.trim())) {
+      return 'Enter a valid National ID Number';
     }
     return null;
   }
@@ -68,5 +75,12 @@ class Validators {
       return 'You must be at least 18 years old to register';
     }
     return null;
+  }
+
+  // date time formatting
+  static String formatDateDDMMYYYY(DateTime date) {
+    final day = date.day.toString().padLeft(2, '0');
+    final month = date.month.toString().padLeft(2, '0');
+    return '$day/$month/${date.year}';
   }
 }
