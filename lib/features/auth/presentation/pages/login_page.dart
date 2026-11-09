@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kyc_platform/core/constants/app_assets.dart';
 import 'package:kyc_platform/core/services/theme/app_spacing.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_color.dart';
@@ -32,10 +34,27 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _goHome() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => const KycChecklistPage()),
-    );
+  Future<void> _signInWithGoogle() async {
+    try {
+      final googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) return;
+      final googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+      if (!mounted) return;
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const KycChecklistPage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message ?? 'Google sign-in failed')),
+      );
+    }
   }
 
   @override
@@ -276,7 +295,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   minimumSize: const Size.fromHeight(55),
                                 ),
-                                onPressed: _goHome,
+                                onPressed: _signInWithGoogle,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
