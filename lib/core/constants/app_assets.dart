@@ -22,4 +22,6 @@ class AppAssets {
   static const String checklistTick = '$_iconsPath/checklist_tick.png';
   static const String nationalIdIllustration =
       '$_iconsPath/national_id.png';
+  static const String eyeOff = '$_iconsPath/eye_off.png';
+  static const String googleLogo = '$_iconsPath/google_logo.png';
 }
