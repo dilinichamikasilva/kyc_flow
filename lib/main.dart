@@ -6,7 +6,7 @@ import 'core/services/theme/data/repositories/theme_repository_impl.dart';
 import 'core/services/theme/domain/usecases/get_theme_colors.dart';
 import 'core/services/theme/domain/usecases/get_theme_typography.dart';
 import 'core/services/theme/presentation/bloc/theme_bloc.dart';
-import 'features/auth/presentation/pages/login_page.dart';
+import 'features/explore_app/presentation/pages/explore_app_welcome_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +29,7 @@ class KycApp extends StatelessWidget {
       child: const MaterialApp(
         title: 'KYC Flow',
         debugShowCheckedModeBanner: false,
-        home: LoginPage(),
+        home: ExploreAppWelcomePage(),
       ),
     );
   }
