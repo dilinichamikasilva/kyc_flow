@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kyc_platform/core/constants/app_assets.dart';
 import 'package:kyc_platform/core/widgets/identity_header.dart';
 import 'package:kyc_platform/core/services/theme/app_spacing.dart';
+import 'package:kyc_platform/features/kyc_checklist/presentation/bloc/kyc_checklist_bloc.dart';
 import 'package:kyc_platform/features/kyc_checklist/presentation/widgets/kyc_section.dart';
 import 'package:kyc_platform/features/about_you/presentation/pages/about_you_page.dart';
 import 'package:kyc_platform/features/your_identity/presentation/pages/selfie_intro_page.dart';
@@ -10,20 +12,26 @@ import 'package:kyc_platform/core/services/theme/domain/entities/app_color.dart'
 import 'package:kyc_platform/core/services/theme/presentation/extension/theme_context_extension.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.dart';
 
-class KycChecklistPage extends StatefulWidget {
+class KycChecklistPage extends StatelessWidget {
   const KycChecklistPage({super.key});
 
   @override
-  State<KycChecklistPage> createState() => _KycChecklistPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => KycChecklistBloc(),
+      child: const _KycChecklistView(),
+    );
+  }
 }
 
-class _KycChecklistPageState extends State<KycChecklistPage> {
-  bool _aboutYouCompleted = false;
-  bool _yourIdentityCompleted = false;
-  bool _otherDocumentCompleted = false;
+class _KycChecklistView extends StatelessWidget {
+  const _KycChecklistView();
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<KycChecklistBloc>();
+    final state = context.watch<KycChecklistBloc>().state;
+
     return Scaffold(
       backgroundColor: context.getColor(AppColor.backgroundLight),
       body: Column(
@@ -45,7 +53,7 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                   ),
                   title: 'About you',
                   description: 'Your citizenship and personal details.',
-                  statusLabel: _aboutYouCompleted ? 'completed' : null,
+                  statusLabel: state.aboutYouCompleted ? 'completed' : null,
                   onTap: () async {
                     final result = await Navigator.of(context).push(
                       MaterialPageRoute(
@@ -53,14 +61,14 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                       ),
                     );
                     if (result == true) {
-                      setState(() => _aboutYouCompleted = true);
+                      bloc.add(const AboutYouCompleted());
                     }
                   },
                 ),
                 const SizedBox(height: AppSpacing.listGap),
                 KycSection(
                   icon: Image.asset(
-                    _aboutYouCompleted
+                    state.aboutYouCompleted
                         ? AppAssets.yourIdentity
                         : AppAssets.yourIdentityInactive,
                     width: AppSpacing.tileIconSize,
@@ -69,9 +77,10 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                   ),
                   title: 'Your Identity',
                   description: 'Checking to make sure you and your ID match.',
-                  statusLabel: _yourIdentityCompleted ? 'completed' : null,
-                  isActive: _aboutYouCompleted,
-                  onTap: _aboutYouCompleted
+                  statusLabel:
+                      state.yourIdentityCompleted ? 'completed' : null,
+                  isActive: state.aboutYouCompleted,
+                  onTap: state.aboutYouCompleted
                       ? () async {
                           final result = await Navigator.of(context).push(
                             MaterialPageRoute(
@@ -79,7 +88,7 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                             ),
                           );
                           if (result == true) {
-                            setState(() => _yourIdentityCompleted = true);
+                            bloc.add(const YourIdentityCompleted());
                           }
                         }
                       : null,
@@ -87,7 +96,7 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                 const SizedBox(height: AppSpacing.listGap),
                 KycSection(
                   icon: Image.asset(
-                    _yourIdentityCompleted
+                    state.yourIdentityCompleted
                         ? AppAssets.otherDocument
                         : AppAssets.otherDocumentInactive,
                     width: AppSpacing.tileIconSize,
@@ -97,17 +106,19 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                   title: 'Other document',
                   description:
                       'Processing of transactions and services that require your authorization.',
-                  statusLabel: _otherDocumentCompleted ? 'completed' : null,
-                  isActive: _yourIdentityCompleted,
-                  onTap: _yourIdentityCompleted
+                  statusLabel:
+                      state.otherDocumentCompleted ? 'completed' : null,
+                  isActive: state.yourIdentityCompleted,
+                  onTap: state.yourIdentityCompleted
                       ? () async {
                           final result = await Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => const WorkPermitIntroPage(),
+                              builder: (context) =>
+                                  const WorkPermitIntroPage(),
                             ),
                           );
                           if (result == true) {
-                            setState(() => _otherDocumentCompleted = true);
+                            bloc.add(const OtherDocumentCompleted());
                           }
                         }
                       : null,
@@ -115,7 +126,7 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                 const SizedBox(height: AppSpacing.listGap),
                 KycSection(
                   icon: Image.asset(
-                    _otherDocumentCompleted
+                    state.otherDocumentCompleted
                         ? AppAssets.billingProof
                         : AppAssets.billingProofInactive,
                     width: AppSpacing.tileIconSize,
@@ -125,8 +136,8 @@ class _KycChecklistPageState extends State<KycChecklistPage> {
                   title: 'Billing proof',
                   description:
                       'Checking to make sure you are an authorized representative.',
-                  isActive: _otherDocumentCompleted,
-                  onTap: _otherDocumentCompleted ? () {} : null,
+                  isActive: state.otherDocumentCompleted,
+                  onTap: state.otherDocumentCompleted ? () {} : null,
                 ),
               ],
             ),

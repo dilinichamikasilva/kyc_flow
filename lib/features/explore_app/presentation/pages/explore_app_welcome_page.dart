@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kyc_platform/core/constants/app_assets.dart';
 import 'package:kyc_platform/features/auth/presentation/pages/login_page.dart';
+import 'package:kyc_platform/core/services/theme/app_radius.dart';
+import 'package:kyc_platform/core/services/theme/app_sizes.dart';
 import 'package:kyc_platform/core/services/theme/app_spacing.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_color.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.dart';
@@ -9,14 +11,10 @@ import 'package:kyc_platform/core/services/theme/presentation/extension/theme_co
 class ExploreAppWelcomePage extends StatelessWidget {
   const ExploreAppWelcomePage({super.key});
 
-  static const double _designWidth = 430;
-  static const double _ringSize = 520;
-  static const double _ringWidth = 2;
-
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
-    final scale = deviceWidth / _designWidth;
+    final scale = deviceWidth / AppSizes.headerDesignWidth;
 
     return Scaffold(
       backgroundColor: context.getColor(AppColor.backgroundLight),
@@ -39,31 +37,31 @@ class ExploreAppWelcomePage extends StatelessWidget {
                 child: Stack(
                   children: [
                     Positioned(
-                      top: -150 * scale,
-                      right: 80 * scale,
+                      top: AppSizes.exploreRingTopOffset * scale,
+                      right: AppSizes.exploreRingRightOffsetPrimary * scale,
                       child: Container(
-                        width: _ringSize * scale,
-                        height: _ringSize * scale,
+                        width: AppSizes.headerRingSize * scale,
+                        height: AppSizes.headerRingSize * scale,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
                             color: context.getColor(AppColor.accent),
-                            width: _ringWidth,
+                            width: AppSizes.headerRingWidth,
                           ),
                         ),
                       ),
                     ),
                     Positioned(
-                      top: -150 * scale,
-                      right: -340 * scale,
+                      top: AppSizes.exploreRingTopOffset * scale,
+                      right: AppSizes.exploreRingRightOffsetSecondary * scale,
                       child: Container(
-                        width: _ringSize * scale,
-                        height: _ringSize * scale,
+                        width: AppSizes.headerRingSize * scale,
+                        height: AppSizes.headerRingSize * scale,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
                             color: context.getColor(AppColor.accent),
-                            width: _ringWidth,
+                            width: AppSizes.headerRingWidth,
                           ),
                         ),
                       ),
@@ -79,7 +77,7 @@ class ExploreAppWelcomePage extends StatelessWidget {
                           children: [
                             Image.asset(
                               AppAssets.exploreAppIllustration,
-                              height: 90,
+                              height: AppSizes.exploreIllustrationHeight,
                               filterQuality: FilterQuality.high,
                             ),
                             const SizedBox(height: AppSpacing.xl),
@@ -112,7 +110,7 @@ class ExploreAppWelcomePage extends StatelessWidget {
             decoration: BoxDecoration(
               color: context.getColor(AppColor.backgroundLight),
               borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(24),
+                top: Radius.circular(AppRadius.s24),
               ),
             ),
             child: SafeArea(
@@ -124,9 +122,10 @@ class ExploreAppWelcomePage extends StatelessWidget {
                     backgroundColor: context.getColor(AppColor.buttonPrimary),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(AppRadius.s12),
                     ),
-                    minimumSize: const Size.fromHeight(55),
+                    minimumSize:
+                        const Size.fromHeight(AppSizes.primaryButtonHeight),
                   ),
                   onPressed: () {
                     Navigator.of(context).pushReplacement(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kyc_platform/core/constants/app_assets.dart';
+import 'package:kyc_platform/core/services/theme/app_radius.dart';
+import 'package:kyc_platform/core/services/theme/app_sizes.dart';
 import 'package:kyc_platform/core/services/theme/app_spacing.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_color.dart';
 import 'package:kyc_platform/core/services/theme/domain/entities/app_typography.dart';
@@ -52,8 +54,8 @@ class WorkPermitIntroPage extends StatelessWidget {
                       children: [
                         Image.asset(
                           AppAssets.checklistTick,
-                          width: 22,
-                          height: 22,
+                          width: AppSizes.checklistTickSize,
+                          height: AppSizes.checklistTickSize,
                           filterQuality: FilterQuality.high,
                         ),
                         const SizedBox(width: AppSpacing.md),
@@ -82,9 +84,10 @@ class WorkPermitIntroPage extends StatelessWidget {
                 backgroundColor: context.getColor(AppColor.buttonPrimary),
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(AppRadius.s12),
                 ),
-                minimumSize: const Size.fromHeight(55),
+                minimumSize:
+                    const Size.fromHeight(AppSizes.primaryButtonHeight),
                 padding:
                     const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
               ),
